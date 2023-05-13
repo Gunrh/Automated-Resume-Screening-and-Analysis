@@ -5,22 +5,22 @@ import util
 import json
 from datetime import datetime
 
-import tkinter as tk
+# import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 from fpdf import FPDF
-import tkinter as tk
-import os
-import util
-import json
-from datetime import datetime
+# import tkinter as tk
+# import os
+# import util
+# import json
+# from datetime import datetime
 
 
-import tkinter as tk
+# import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
-from fpdf import FPDF
-import os
+# from fpdf import FPDF
+# import os
  
 class App:
     def __init__(self, master):
