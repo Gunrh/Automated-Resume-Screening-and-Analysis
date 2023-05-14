@@ -6,6 +6,7 @@ from typing import List, Tuple
 import json
 
 
+
 def get_email( text):
     words = text.split()
     for word in words:
