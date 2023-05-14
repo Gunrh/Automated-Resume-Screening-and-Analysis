@@ -15,6 +15,8 @@ def get_email( text):
 
 
 
+
+
 def create_pdf_name_list( _path): #pdf names can be english \hebrew
     """""The function input path of folders with pdf files and
       return clean list with all pdf file names"""
