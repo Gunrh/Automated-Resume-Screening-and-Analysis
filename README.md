@@ -1,5 +1,5 @@
 # Automated Resume Screening and Analysis - Demo version in github
-#### In the github file, there is a very preliminary demo version just for the purpose of illustration. 
+#### In the github file, there is a very preliminary demo version just for the purpose of illustration.  - The upgraded version without open source at the moment
 #### There is a full version of the interface in a YouTube video
 ![project_filterCV_github](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/0936654b-dbad-4868-bac6-58dadeaa13a1)
 
