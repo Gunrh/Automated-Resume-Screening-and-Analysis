@@ -1,5 +1,5 @@
 # Automated Resume Screening and Analysis - Demo version in github
-
+#### In the github file, there is a very preliminary demo version just for the purpose of illustration
 ![project_filterCV_github](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/0936654b-dbad-4868-bac6-58dadeaa13a1)
 
 This project aims to improve hiring process by automating resume screening and providing comprehensive analysis using Big data and data analytics techniques. My goal is to save valuable time and improve the efficiency and accuracy of candidate evaluation.
