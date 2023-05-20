@@ -2,7 +2,6 @@
 #### In the github file, there is a very preliminary demo version just for the purpose of illustration.  - The upgraded version without open source at the moment
 #### There is a full version of the interface in a YouTube video
 <!-- ![project_filterCV_github](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/0936654b-dbad-4868-bac6-58dadeaa13a1) -->
-![ezgif com-video-to-gif (1)](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/d96011ec-f4b9-4044-b5a3-e01e725f540f)
 ![bigger-gif](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/de95da1f-4f91-404f-87f5-ce07faa12bc1)
 
 This project aims to improve hiring process by automating resume screening and providing comprehensive analysis using Big data and data analytics techniques. My goal is to save valuable time and improve the efficiency and accuracy of candidate evaluation.
