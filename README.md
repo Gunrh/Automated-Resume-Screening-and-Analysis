@@ -1,5 +1,4 @@
 # Automated Resume Screening and Analysis 
-#### There is no code sharing in this project on github,
 
 <!-- ![project_filterCV_github](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/0936654b-dbad-4868-bac6-58dadeaa13a1) -->
 ![bigger-gif](https://github.com/Gunrh/Automated-Resume-Screening-and-Analysis/assets/95572023/de95da1f-4f91-404f-87f5-ce07faa12bc1)
