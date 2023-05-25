@@ -18,7 +18,7 @@ The system performs a thorough analysis of candidate qualifications,
 generating a detailed summary that highlights their strengths and areas of expertise. 
 This analysis enables recruiters to make informed decisions quickly.
 ### Visual Insights Dashboard: 
-I am have developed an intuitive dashboard that presents visual insights derived from the resume data. The dashboard includes various graphs, such as the distribution of matching keywords, percentage distribution of candidate qualifications, and the distribution of resumes based on PDF filenames. These visualizations provide recruiters with valuable information at a glance.
+I am have developed an intuitive dashboard that presents visual insights derived from the resume data. The dashboard includes various graphs, such as the distribution of matching keywords, percentage distribution of candidate qualifications, and the distribution of resumes based on PDF filenames. These visualizations provide recruiters with valuable information at a glance. 
 
 ### PDF Summary Generation: 
 As an added convenience, our system generates a concise summary file in PDF format for each candidate. This summary condenses the essential details from the resume, making it easy to reference and compare during the selection process.
