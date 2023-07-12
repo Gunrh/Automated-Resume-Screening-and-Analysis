@@ -1,1 +1,257 @@
-<!-- not shared code -->
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8"> <!-- Add the character set declaration             MAYBE TO DELETE -->
+
+    <title>Data Dashboard</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    
+        #chartContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Add an interval between the graphs */
+        }
+    
+        .chart {
+            height: calc(50% - 20px); /* Subtract the interval height */
+            width: 50%;
+            padding: 10px;
+        }
+    
+        #pieChart {
+            height: 100%;
+            width: 100%;
+        }
+    
+        #barChart {
+            height: 100%;
+            width: 100%;
+        }
+    
+        #stackedBarChart1,
+        #stackedBarChart2 {
+            height: calc(50% - 20px); /* Subtract the interval height */
+            width: 100%;
+        }
+    
+        .chart-title {
+            margin-top: 100px;
+            
+        }
+        .chart-title2 {
+            margin-top: 200px;
+            
+        }
+        .chart-title3 {
+            margin-top: 300px;
+            
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <!-- <script src="All_Resumes_Data.js"></script> -->
+        <script src="All_Resumes_Data.js" charset="UTF-8"></script> <!-- Add the character set to the script tag -->
+
+</head>
+<body>
+    <div id="chartContainer">
+        <div class="chart">
+            <h1>Matching Keywords Distribution</h1>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart">
+            <h1 class="chart-title">Count Key Words Distribution -( to find strong skills)</h1>
+            <canvas id="stackedBarChart2"></canvas>
+        </div>
+    
+        <div class="chart">
+            <h1 class="chart-title2">Total rank for resume</h1>
+            <canvas id="stackedBarChart1"></canvas>
+        </div>
+    
+        <div class="chart">
+            <h1 class="chart-title3">Percentage Distribution - (To set an accurate threshold)</h1>
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        // Read the JSON data from file
+        const jsonData = resumeData;
+    
+        // Create an object to store the count of each matching keyword
+        const keywordCount = {};
+    
+        // Calculate the count of each matching keyword
+        jsonData.forEach(obj => {
+            const keywords = obj.matching_keywords;
+            keywords.forEach(keyword => {
+                keywordCount[keyword] = keywordCount[keyword] ? keywordCount[keyword] + 1 : 1;
+            });
+        });
+    
+        // Extract the unique matching keywords and their counts
+        const labels = Object.keys(keywordCount);
+        const data = Object.values(keywordCount);
+    
+        // Generate dynamic colors for the pie chart
+        const colors = generateColors(labels.length);
+    
+        // Create a pie chart using Chart.js library
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    
+        // Prepare the data for the second stacked bar chart (Count Key Words Distribution)
+        const stackedLabels2 = jsonData.map(obj => obj.pdf_filename);
+        const stackedCountData2 = jsonData.map(obj => Object.values(obj.count_key_words));
+    
+        // Create the second stacked bar chart using Chart.js library
+        const stackedBarCtx2 = document.getElementById('stackedBarChart2').getContext('2d');
+        const stackedBarChart2 = new Chart(stackedBarCtx2, {
+            type: 'bar',
+            data: {
+                labels: stackedLabels2,
+                datasets: Object.keys(keywordCount).map((keyword, index) => ({
+                    label: keyword,
+                    data: stackedCountData2.map(obj => obj[index] || 0),
+                    backgroundColor: colors[index],
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1
+                }))
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    
+        // Prepare the data for the first stacked bar chart (Total rank for resume)
+        const stackedLabels1 = jsonData.map(obj => obj.pdf_filename);
+        const stackedScoreData1 = jsonData.map(obj => obj.score);
+        const stackedPercentageData1 = jsonData.map(obj => obj.percentage);
+    
+        // Create the first stacked bar chart using Chart.js library
+        const stackedBarCtx1 = document.getElementById('stackedBarChart1').getContext('2d');
+        const stackedBarChart1 = new Chart(stackedBarCtx1, {
+            type: 'bar',
+            data: {
+                labels: stackedLabels1,
+                datasets: [{
+                    label: 'Score',
+                    data: stackedScoreData1,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Percentage',
+                    data: stackedPercentageData1,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 10
+                        }
+                    }]
+                }
+            }
+        });
+    
+        // Create an object to store the count of each percentage
+        const percentageCount = {};
+    
+        // Calculate the count of each percentage
+        jsonData.forEach(obj => {
+            const percentage = obj.percentage;
+            percentageCount[percentage] = percentageCount[percentage] ? percentageCount[percentage] + 1 : 1;
+        });
+    
+        // Sort the percentage values in ascending order
+        const sortedPercentages = Object.keys(percentageCount).sort((a, b) => a - b);
+    
+        // Extract the counts for each percentage
+        const countData = sortedPercentages.map(percentage => percentageCount[percentage]);
+    
+        // Create a bar chart using Chart.js library
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: sortedPercentages,
+                datasets: [{
+                    label: 'Count',
+                    data: countData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    
+        // Function to generate dynamic colors for the pie chart
+        function generateColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = (i * (360 / count)) % 360;
+                const color = `hsl(${hue}, 70%, 50%)`;
+                colors.push(color);
+            }
+            return colors;
+        }
+    </script>
+    </body>
+    </html>
